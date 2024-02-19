@@ -13,6 +13,7 @@ gem "rake"
 
 group :development, :test do
   gem "dotenv"
+  gem "standardrb"
 end
 
 group :cli, :development do
