@@ -21,6 +21,22 @@ services:
       - .:/lead
     command: ["sleep", "infinity"]
 
+  app-dev:
+    profiles: [ "test" ]
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: development
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    depends_on:
+      mariadb:
+        condition: "service_healthy"
+    volumes:
+      - .:/lead
+    command: [ "rspec" ]
+
   mariadb:
     image: bitnami/mariadb
     hostname: db.lead.local

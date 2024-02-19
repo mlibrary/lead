@@ -1,0 +1,37 @@
+---
+name: Continuous Integration
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  ci:
+    if: ${{ github.event_name == 'push' || github.event.pull_request.merged == true }}
+
+    runs-on: ubuntu-latest
+    name: ${{ matrix.suite }} - Ruby ${{ matrix.ruby }}
+    strategy:
+      fail-fast: false
+      matrix:
+        suite:
+          - 'app'
+        ruby:
+          - '3.2.2'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env
+        run: |
+          echo "UID=$(id -u)" > .env
+          echo "GID=$(id -g)" >> .env
+
+      - if: matrix.suite == 'app'
+        run: |
+          docker compose build --build-arg RUBY_VERSION=${{ matrix.ruby }} app-dev
+          docker compose run app-dev standardrb
+          docker compose run app-dev
