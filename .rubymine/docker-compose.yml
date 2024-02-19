@@ -13,7 +13,8 @@ services:
       default:
         aliases: ["app"]
     ports:
-      - "127.0.0.1:2300:2300"
+      - "2300:2300"
+      - "1234:1234" # RubyMine
     depends_on:
       mariadb:
         condition: "service_healthy"
@@ -28,10 +29,10 @@ services:
       default:
         aliases: ["db"]
     ports:
-      - "127.0.0.1:3306:3306"
+      - "3306:3306"
     volumes:
       - mariadb_data:/bitnami/mariadb
-      - ./db:/sql
+      - ../db:/sql
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_DATABASE=lead
