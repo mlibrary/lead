@@ -1,0 +1,80 @@
+---
+services:
+  dev:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: development
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    environment:
+      - DATABASE_URL=mysql2://lead:lead@db.lead.local:3306/lead_demo
+    hostname: dev.lead.local
+    networks:
+      default:
+        aliases: ["dev"]
+    ports:
+      - "127.0.0.1:2300:2300"
+    depends_on:
+      mariadb:
+        condition: "service_healthy"
+    volumes:
+      - ./:/lead
+
+  app:
+    profiles: [ "production" ]
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: production
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    environment:
+      - DATABASE_URL=mysql2://lead:lead@db.lead.local:3306/lead_demo
+    hostname: app.lead.local
+    networks:
+      default:
+        aliases: ["app"]
+    ports:
+      - "127.0.0.1:2300:2300"
+    depends_on:
+      mariadb:
+        condition: "service_healthy"
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://app.lead.local:2300", "--output", "/dev/null", "--silent" ]
+      interval: "5s"
+      timeout: "2s"
+      retries: 3
+    volumes:
+      - ./:/lead
+
+  mariadb:
+    image: bitnami/mariadb
+    hostname: db.lead.local
+    networks:
+      default:
+        aliases: ["db"]
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mariadb_data:/bitnami/mariadb
+      - ./db:/sql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=lead
+      - MARIADB_USER=lead
+      - MARIADB_PASSWORD=lead
+      - TZ=America/Detroit
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "-u", "root", "status"]
+      interval: "10s"
+      timeout: "10s"
+      retries: 3
+
+volumes:
+  mariadb_data:
+
+networks:
+  default:
