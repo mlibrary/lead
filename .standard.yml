@@ -1,0 +1,2 @@
+extend_config:
+  - .my_frozen_string_literal_comment.yml
