@@ -6,6 +6,6 @@ module Lead
     #
     # setting :my_flag, default: false, constructor: Types::Params::Bool
 
-    setting :database_url, constructor: Types::Params::String
+    setting :database_url, constructor: Types::String
   end
 end

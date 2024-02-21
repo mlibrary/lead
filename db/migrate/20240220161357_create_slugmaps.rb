@@ -7,8 +7,8 @@ ROM::SQL.migration do
       column :corpname, String, null: false
       column :reposlug, String, null: false
 
-      column :created_at, DateTime, null: false
-      column :updated_at, DateTime, null: false
+      column :created_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
+      column :updated_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
   end
 end

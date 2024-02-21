@@ -9,14 +9,14 @@ ROM::SQL.migration do
       column :size, Integer, default: 0
       column :ead2002, String, text: true, default: ""
       column :ead3, String, text: true, default: ""
-      column :corpname, String
-      column :reposlug, String
-      column :eadid, String
-      column :state, String
-      column :error, String
+      column :corpname, String, default: ""
+      column :reposlug, String, default: ""
+      column :eadid, String, default: ""
+      column :state, String, default: ""
+      column :error, String, default: ""
 
-      column :created_at, DateTime, null: false
-      column :updated_at, DateTime, null: false
+      column :created_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
+      column :updated_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
   end
 end

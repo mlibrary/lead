@@ -1,0 +1,7 @@
+<h1>Findingaids</h1>
+
+<ul>
+  <% findingaids.each do |findingaid| %>
+    <li><%= findingaid[:id] %>, <%= findingaid[:filename] %></li>
+  <% end %>
+</ul>

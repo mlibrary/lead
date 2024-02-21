@@ -1,0 +1,7 @@
+<h1>Slugmaps</h1>
+
+<ul>
+  <% slugmaps.each do |slugmap| %>
+    <li><%= slugmap[:id] %>, <%= slugmap[:corpname] %>, <%= slugmap[:reposlug] %></li>
+  <% end %>
+</ul>
