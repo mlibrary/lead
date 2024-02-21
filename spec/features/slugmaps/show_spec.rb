@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature "Showing a slugmap", type: [:feature, :database] do
-  let(:slugmaps) { Hanami.app["persistence.rom"].relations[:slugmaps] }
+  let(:slugmaps) { relations[:slugmaps] }
 
   context "when a slugmap matches the given ID" do
     let!(:slugmap_id) do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature "Showing a findingaid", type: [:feature, :database] do
-  let(:findingaids) { Hanami.app["persistence.rom"].relations[:findingaids] }
+  let(:findingaids) { relations[:findingaids] }
 
   context "when a findingaid matches the given ID" do
     let!(:findingaid_id) do

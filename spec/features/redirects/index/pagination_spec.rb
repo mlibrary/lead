@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature "Redirects index pagination", type: [:feature, :database] do
-  let(:redirects) { Hanami.app["persistence.rom"].relations[:redirects] }
+  let(:redirects) { relations[:redirects] }
 
   before do
     10.times do |n|

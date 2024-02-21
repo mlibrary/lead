@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature "Showing a redirect", type: [:feature, :database] do
-  let(:redirects) { Hanami.app["persistence.rom"].relations[:redirects] }
+  let(:redirects) { relations[:redirects] }
 
   context "when a redirect matches the given ID" do
     let!(:redirect_id) do
