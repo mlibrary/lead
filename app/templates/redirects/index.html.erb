@@ -1,0 +1,7 @@
+<h1>Redirects</h1>
+
+<ul>
+  <% redirects.each do |redirect| %>
+    <li><%= redirect[:id] %>, <%= redirect[:from] %>, <%= redirect[:to] %></li>
+  <% end %>
+</ul>
