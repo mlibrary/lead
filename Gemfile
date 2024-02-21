@@ -6,6 +6,7 @@ gem "hanami", "~> 2.0"
 gem "hanami-router", "~> 2.0"
 gem "hanami-controller", "~> 2.0"
 gem "hanami-validations", "~> 2.0"
+gem "hanami-view", "~> 2.0"
 
 gem "rom"
 gem "rom-sql"
@@ -33,6 +34,7 @@ group :development do
 end
 
 group :test do
+  gem "capybara"
   gem "database_cleaner-sequel"
   gem "rack-test"
 end
