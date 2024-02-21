@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature "Slugmaps index pagination" do
+RSpec.feature "Slugmaps index pagination", type: [:feature, :database] do
   let(:slugmaps) { Hanami.app["persistence.rom"].relations[:slugmaps] }
 
   before do

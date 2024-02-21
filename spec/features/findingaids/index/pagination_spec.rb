@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature "Findingaids index pagination" do
+RSpec.feature "Findingaids index pagination", type: [:feature, :database] do
   let(:findingaids) { Hanami.app["persistence.rom"].relations[:findingaids] }
 
   before do

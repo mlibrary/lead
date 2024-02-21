@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature "Redirects index pagination" do
+RSpec.feature "Redirects index pagination", type: [:feature, :database] do
   let(:redirects) { Hanami.app["persistence.rom"].relations[:redirects] }
 
   before do
