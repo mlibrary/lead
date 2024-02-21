@@ -33,5 +33,6 @@ jobs:
       - if: matrix.suite == 'app'
         run: |
           docker compose build --build-arg RUBY_VERSION=${{ matrix.ruby }} app-dev
+          docker compose run app-dev rake db:reset
           docker compose run app-dev standardrb
           docker compose run app-dev
