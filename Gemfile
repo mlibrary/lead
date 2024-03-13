@@ -2,19 +2,26 @@
 
 source "https://rubygems.org"
 
-gem "hanami", "~> 2.0"
-gem "hanami-router", "~> 2.0"
-gem "hanami-controller", "~> 2.0"
-gem "hanami-validations", "~> 2.0"
-gem "hanami-view", "~> 2.0"
+HANAMI_VERSION = "2.0"
 
-gem "rom"
-gem "rom-sql"
+gem "hanami", "~> #{HANAMI_VERSION}"
+gem "hanami-router", "~> #{HANAMI_VERSION}"
+gem "hanami-controller", "~> #{HANAMI_VERSION}"
+gem "hanami-validations", "~> #{HANAMI_VERSION}"
+gem "hanami-view", "~> #{HANAMI_VERSION}"
+
+gem "rom", "~> 5.3"
+gem "rom-sql", "~> 3.6"
 gem "mysql2"
 
 gem "dry-types", "~> 1.0", ">= 1.6.1"
 gem "puma"
 gem "rake"
+
+gem "yabeda-hanami", git: "https://github.com/mlibrary/yabeda-hanami", branch: "main"
+gem "yabeda-puma-plugin", "~> 0.7"
+gem "yabeda-http_requests", "~> 0.2"
+gem "yabeda-prometheus", "~> 0.9"
 
 group :development, :test do
   gem "dotenv"
@@ -22,15 +29,16 @@ group :development, :test do
 end
 
 group :cli, :development do
-  gem "hanami-reloader"
+  gem "hanami-reloader", "~> #{HANAMI_VERSION}"
 end
 
 group :cli, :development, :test do
-  gem "hanami-rspec"
+  gem "hanami-rspec", "~> #{HANAMI_VERSION}"
 end
 
 group :development do
   gem "guard-puma", "~> 0.8"
+  gem "hanami-webconsole", "~> #{HANAMI_VERSION}"
 end
 
 group :test do
