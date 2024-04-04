@@ -14,3 +14,11 @@ namespace :db do
     ROM::SQL::RakeSupport.env = Hanami.app["persistence.config"]
   end
 end
+
+require "rspec/core/rake_task"
+
+RSpec::Core::RakeTask.new(:spec)
+
+require "standard/rake"
+
+task default: %i[standard spec]

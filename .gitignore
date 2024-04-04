@@ -1,5 +1,7 @@
+.bash_history
 .bundle/
 .cache/
 .env
 .env.*.local
+.idea/
 log/*
