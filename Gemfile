@@ -21,10 +21,9 @@ gem "puma"
 gem "rake"
 
 gem "yabeda-hanami", "~> 0.1"
-gem "yabeda-puma-plugin", "~> 0.7"
 gem "yabeda-http_requests", "~> 0.2"
-gem "yabeda-hanami, ~> 0.1"
 gem "yabeda-prometheus", "~> 0.9"
+gem "yabeda-puma-plugin", "~> 0.7"
 
 group :development, :test do
   gem "dotenv"

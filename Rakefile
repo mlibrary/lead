@@ -15,10 +15,8 @@ namespace :db do
   end
 end
 
-require "rspec/core/rake_task"
-
-RSpec::Core::RakeTask.new(:spec)
-
 require "standard/rake"
 
+desc "standard spec"
+Rake::Task["default"].clear
 task default: %i[standard spec]

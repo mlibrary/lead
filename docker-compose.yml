@@ -35,7 +35,7 @@ services:
         condition: "service_healthy"
     volumes:
       - .:/lead
-    command: [ "rspec" ]
+    command: ["sleep", "infinity"]
 
   mariadb:
     image: bitnami/mariadb

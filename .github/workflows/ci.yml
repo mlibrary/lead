@@ -33,6 +33,8 @@ jobs:
       - if: matrix.suite == 'app'
         run: |
           docker compose build --build-arg RUBY_VERSION=${{ matrix.ruby }} app-dev
-          docker compose run app-dev rake db:reset
-          docker compose run app-dev standardrb
-          docker compose run app-dev
+          docker compose up -d app-dev
+          docker compose exec mariadb /sql/setup.sh -b -u lead -p lead lead_test
+          docker compose exec --env HANAMI_ENV=test app-dev rake db:migrate
+          docker compose exec app-dev rake
+
